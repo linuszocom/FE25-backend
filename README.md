@@ -6,8 +6,6 @@
 
 - **Client–server-modellen** beskriver just detta: **klienten** (t.ex. webbläsaren) skickar en förfrågan, **servern** (backend) behandlar den och svarar. Backend är alltså inte “en app du öppnar” – det är den kod som körs på en server och svarar när någon (t.ex. frontend) anropar den.
 
-Du ska kunna **redogöra för** hur backend och frontend samverkar i en helhetslösning: frontend skickar förfrågningar, backend hanterar dem och svarar (eventuellt med data från databas eller filer).
-
 ---
 
 # Backend-ramverk – vad är det och vilka finns?
@@ -17,8 +15,6 @@ Du ska kunna **redogöra för** hur backend och frontend samverkar i en helhetsl
 - **Exempel på backend-ramverk:** Node.js (runtime) tillsammans med Express, Django (Python), Flask (Python), Spring Boot (Java), Laravel (PHP), ASP.NET (C#), FastAPI (Python) med flera. Olika ramverk används i olika språk och projekt.
 
 - **Runtime** vs **ramverk:** En **runtime** (t.ex. **Node.js**) är det som **kör** koden – Node.js låter dig köra JavaScript på servern utan webbläsare. Ett **ramverk** (t.ex. **Express**) bygger ovanpå runtimeten och ger färdiga lösningar för att bygga webbservrar och API:er (routes, middleware, parsning av request body osv.). Node.js är alltså runtime; Express är ett ramverk som används tillsammans med Node.
-
-Du ska kunna **redogöra för** olika backend-ramverk: vad de används till och hur begreppen runtime och ramverk skiljer sig åt.
 
 ---
 
@@ -32,8 +28,6 @@ Du ska kunna **redogöra för** olika backend-ramverk: vad de används till och 
 
 - **LTS** (Long Term Support) betyder att en Node-version får säkerhetsuppdateringar och stöd under en längre period. För kurs och produktion rekommenderas LTS (t.ex. v18 eller v20).
 
-Du ska kunna **redogöra för** varför man använder pakethantering (NPM) och vad package.json och dependencies har för roll.
-
 ---
 
 # Moduler i Node – CommonJS och ESM
@@ -44,8 +38,6 @@ Du ska kunna **redogöra för** varför man använder pakethantering (NPM) och v
 
 - **ESM** använder `import ... from '...'` och `export`. Det är samma modell som i modern JavaScript i webbläsaren och det som rekommenderas för ny kod. För att Node ska acceptera import/export i .js-filer måste projektet ha **`"type": "module"`** i package.json.
 
-Du ska kunna **förstå** skillnaden mellan CommonJS och ESM och varför man i nya projekt ofta väljer ESM (moduler).
-
 ---
 
 # HTTP – protokollet som styr webben
@@ -53,8 +45,6 @@ Du ska kunna **förstå** skillnaden mellan CommonJS och ESM och varför man i n
 - **HTTP** (HyperText Transfer Protocol) är det **protokoll** som styr hur klient och server pratar med varandra på webben. När du skriver en adress i webbläsaren eller anropar ett API skickas en **HTTP-förfrågan** till servern; servern svarar med ett **HTTP-svar**.
 
 - **Request–Response-cykeln** betyder att **klienten** skickar en **förfrågan** (request) – med adress, metod, headers och eventuellt body – och **servern** svarar med ett **svar** (response) – med statuskod, headers och ofta en body (t.ex. HTML eller JSON). Allt som händer på webben – ladda sida, skicka formulär, hämta data från API – bygger på detta mönster.
-
-Du ska kunna **redogöra för** HTTP requests och hur request–response-cykeln fungerar.
 
 ---
 
@@ -72,8 +62,6 @@ Du ska kunna **redogöra för** HTTP requests och hur request–response-cykeln 
 
 - **DELETE** – **ta bort** en resurs.
 
-Du ska kunna **redogöra för** vad de olika HTTP-metoderna används till (särskilt GET och POST) och hur de kopplas till att hämta respektive lämna data genom API:er.
-
 ---
 
 # HTTP-headers
@@ -85,8 +73,6 @@ Du ska kunna **redogöra för** vad de olika HTTP-metoderna används till (särs
 - **User-Agent** – identifierar **vilken klient** som skickar förfrågan (t.ex. webbläsare och version). Finns i request.
 
 - **Authorization** – används för att skicka **inloggningsuppgifter** eller **tokens** (t.ex. API-nyckel eller Bearer-token) så att servern kan avgöra vem som anropar och om de får tillgång.
-
-Du ska kunna **redogöra för** vad HTTP-headers är och ge exempel på vad Content-Type, User-Agent och Authorization används till.
 
 ---
 
@@ -100,8 +86,6 @@ Du ska kunna **redogöra för** vad HTTP-headers är och ge exempel på vad Cont
 
 - **5xx** – fel på **servern**. **500 Internal Server Error** = något gick fel i serverkoden (bugg, krasch).
 
-Du ska kunna **redogöra för** vad olika statuskoder betyder (2xx, 4xx, 5xx) och ge exempel på 200, 201, 400, 404 och 500.
-
 ---
 
 # URL-struktur – path och query-parametrar
@@ -112,8 +96,6 @@ Du ska kunna **redogöra för** vad olika statuskoder betyder (2xx, 4xx, 5xx) oc
 
 - **Viktigt:** **Känslig information** (lösenord, tokens, personuppgifter) ska **inte** skickas i query-parametrar, eftersom de syns i URL:en, i historik och i loggar. Använd i stället **request body** (t.ex. med POST) och **HTTPS**.
 
-Du ska kunna **redogöra för** skillnaden mellan path och query-parametrar och varför känslig data inte ska ligga i URL:en.
-
 ---
 
 # API och datautbyte – hämta och lämna data
@@ -121,8 +103,6 @@ Du ska kunna **redogöra för** skillnaden mellan path och query-parametrar och 
 - Ett **API** (Application Programming Interface) är det sätt som en server **exponerar** funktionalitet och data så att klienter (t.ex. frontend eller mobilapp) kan **hämta** och **lämna** data. I webbens värld görs det ofta via **HTTP**: klienten skickar en request (t.ex. GET för att hämta, POST för att skicka), servern svarar med en response (ofta med data i **JSON**).
 
 - **JSON** (JavaScript Object Notation) är ett vanligt **dataformat** för utbyte mellan klient och server. Servern sätter då **Content-Type** till **application/json** och skickar data som text i JSON-format. Klienten kan tolka texten till objekt i sin egen kod.
-
-Du ska kunna **redogöra för** hur man hämtar och lämnar data genom API:er (GET för att hämta, POST för att skicka, JSON som format) och varför Content-Type är viktigt.
 
 ---
 
@@ -134,8 +114,6 @@ Du ska kunna **redogöra för** hur man hämtar och lämnar data genom API:er (G
 
 - **Användningsområden:** Websockets passar när man behöver **realtid** – t.ex. chatt, livescore, notifieringar, samarbetsverktyg där flera användare ser samma data uppdateras direkt. För vanliga "hämta data vid klick" räcker vanliga HTTP-anrop (GET/POST).
 
-Du ska kunna **redogöra för** vad Websockets är och hur de skiljer sig från den vanliga HTTP request–response-modellen.
-
 ---
 
 # SQL och NoSQL – skillnaden mellan databastyper
@@ -146,8 +124,6 @@ Du ska kunna **redogöra för** vad Websockets är och hur de skiljer sig från 
 
 - **När vad?** **SQL** passar när datan har **tydlig struktur** och **många relationer** mellan entiteter (t.ex. användare, beställningar, orderrader). **NoSQL** (dokumentbaserat) passar när man vill **utveckla snabbt**, när strukturen kan **ändras** eller **variera**, eller när man har andra krav på skalning. Båda är giltiga – valet beror på projektet.
 
-Du ska kunna **redogöra för** skillnaden mellan SQL och NoSQL (t.ex. tabeller och fast schema mot dokument och flexibilitet) och när respektive typ är lämplig.
-
 ---
 
 # Säkerhet – inte exponera känslig data
@@ -157,5 +133,3 @@ Du ska kunna **redogöra för** skillnaden mellan SQL och NoSQL (t.ex. tabeller 
 - **Miljövariabler** (t.ex. i en `.env`-fil) används för att hålla hemligheter **utanför källkoden**. Servern läser t.ex. databaslösenord från miljövariabler i stället för att ha dem hårdkodade. Filer med hemligheter ska inte laddas upp till versionshantering (Git).
 
 - **Authorization** (headers, tokens) används för att avgöra _vem_ som anropar och vad de får tillgång till – så att endast behöriga användare får känslig data.
-
-Du ska kunna **redogöra för** övergripande säkerhet för att inte exponera känslig data från backend (var man inte ska lägga data, miljövariabler, auth).

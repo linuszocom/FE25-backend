@@ -64,6 +64,14 @@
 
 ---
 
+# CRUD – grunden för databas och API
+
+- **CRUD** står för **C**reate, **R**ead, **U**pdate, **D**elete – de fyra grundläggande operationerna på data. Både vid **databashantering** och vid **API-design** mappar man ofta dessa till **HTTP-metoder**: **Create** → POST, **Read** → GET, **Update** → PUT eller PATCH, **Delete** → DELETE.
+
+- Att förstå CRUD hjälper dig att bygga både **REST API:er** (resurser som man skapar, läser, uppdaterar och tar bort) och **databaslogik** (spara, hämta, ändra, radera poster).
+
+---
+
 # HTTP-headers
 
 - **Headers** är **metadata** – information _om_ förfrågan eller svaret, inte nödvändigtvis själva innehållet. Tänk på dem som kuvertet på ett brev.
@@ -106,6 +114,24 @@
 
 ---
 
+# REST – design av webb-API:er
+
+- **REST** (Representational State Transfer) är en **designstil** för webb-API:er som bygger på **resurser** och **HTTP**. Varje resurs (t.ex. användare, produkter, beställningar) har en **URI** (adress) – ofta substantiv i plural, t.ex. `/api/users` eller `/api/produkter`. Klienten använder **HTTP-metoder** (GET, POST, PUT, PATCH, DELETE) för att skapa, läsa, uppdatera eller ta bort resurser – det vill säga **CRUD**.
+
+- **Tillståndslöshet (stateless)** betyder att servern **inte sparar** klientens "session" mellan anropen. Varje förfrågan ska innehålla all information servern behöver (t.ex. token i header). Det gör API:et enklare att skala och felsöka.
+
+- Ett **REST API** är alltså ett API som följer dessa idéer: resurser med tydliga URI:er, CRUD via HTTP-metoder och tillståndslös kommunikation.
+
+---
+
+# Middleware – kedjor i request-flödet
+
+- **Middleware** är **funktioner** som sitter i kedjan mellan den inkommande **request** och det **svar** servern skickar tillbaka. Varje middleware kan läsa och ändra request/response, logga, eller avgöra om nästa steg ska köras (t.ex. kontroll av behörighet).
+
+- I ramverk som **Express** används middleware för t.ex. att **parsa request body** (express.json()), **logga** anrop, **kontrollera inloggning** innan vissa routes, eller **hantera CORS**. Istället för att skriva samma kod i varje route kan man lägga logiken i en middleware som körs för flera routes.
+
+---
+
 # Websockets – realtidskommunikation
 
 - **Websockets** är en teknik för **full-duplex-kommunikation** över en enda TCP-anslutning – det vill säga att klient och server kan skicka data **åt båda hållen** över samma anslutning, utan att behöva skicka nya HTTP-förfrågningar varje gång.
@@ -113,6 +139,14 @@
 - **Skillnad mot HTTP:** Vanlig HTTP bygger på **request–response** – klienten skickar en förfrågan, servern svarar, anslutningen avslutas. För att få ny data måste klienten skicka en ny förfrågan. Med **Websockets** hålls anslutningen **öppen**; servern kan **skicka data till klienten** när som helst (t.ex. vid en uppdatering), utan att klienten behöver fråga först.
 
 - **Användningsområden:** Websockets passar när man behöver **realtid** – t.ex. chatt, livescore, notifieringar, samarbetsverktyg där flera användare ser samma data uppdateras direkt. För vanliga "hämta data vid klick" räcker vanliga HTTP-anrop (GET/POST).
+
+---
+
+# Persistent lagring – varför databas?
+
+- Data som bara finns i **variabler och minne** i serverkoden **försvinner** när servern startas om eller kraschar. **Persistent lagring** betyder att data **sparas på ett sätt som överlever** omstart – t.ex. i **filer** eller i en **databas**.
+
+- En **databas** ger strukturerad, sökbar och ofta relationshantering (SQL) eller flexibel dokumentlagring (NoSQL). Backend använder databas för att spara användare, inlägg, beställningar m.m. så att data finns kvar och kan hämtas vid nästa anrop – det är grunden för att "hantera databaser" i en webbapplikation.
 
 ---
 
@@ -130,6 +164,10 @@
 
 - **Övergripande princip:** Backend ska **inte exponera känslig data** – t.ex. databaslösenord, API-nycklar eller onödiga personuppgifter – till klienten eller i loggar. Känslig information ska inte ligga i **URL:en** (query-parametrar) eller i felmeddelanden som visas för användaren.
 
+- **Autentisering** vs **auktorisering:** **Autentisering** handlar om att avgöra _vem_ användaren är – t.ex. via inloggning och lösenord eller token. **Auktorisering** handlar om _vad_ användaren får göra – vilka resurser eller åtgärder som är tillåtna (t.ex. "endast egen data", "endast admin"). Båda behövs: först verifierar man identiteten (autentisering), sedan kontrollerar man rättigheter (auktorisering).
+
 - **Miljövariabler** (t.ex. i en `.env`-fil) används för att hålla hemligheter **utanför källkoden**. Servern läser t.ex. databaslösenord från miljövariabler i stället för att ha dem hårdkodade. Filer med hemligheter ska inte laddas upp till versionshantering (Git).
 
-- **Authorization** (headers, tokens) används för att avgöra _vem_ som anropar och vad de får tillgång till – så att endast behöriga användare får känslig data.
+- **Authorization** (headers, tokens) används för att skicka inloggningsuppgifter eller tokens till servern så att den kan göra både autentisering och auktorisering – och endast ge behöriga användare tillgång till känslig data.
+
+- **CORS** (Cross-Origin Resource Sharing): När en **frontend** på en adress (t.ex. `http://localhost:3000`) anropar en **backend** på en annan adress eller port (t.ex. `http://localhost:4000`) blockar webbläsaren ofta anropet av säkerhetsskäl – olika "origin" betraktas som olika källor. **CORS** är en mekanism där servern, via särskilda **headers** i svaret, talar om för webbläsaren vilka domäner som får anropa API:et. Backend behöver därför sätta CORS-headers (eller använda middleware för det) så att tillåtna klienter (t.ex. din frontend) kan göra anrop utan att blockeras.

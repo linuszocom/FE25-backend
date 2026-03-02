@@ -1,4 +1,4 @@
-# Enkel Node.js-övning – projekt, filer och indata 📁
+# Node.js - Övning
 
 I den här övningen ska du sätta upp ett Node.js-projekt med ESM (import/export), läsa och skriva till filer med **fs**, och ta emot indata från användaren med **readline-sync**. Du övar på det du gjorde på lektionen: projektstruktur, asynkron filhantering och moduler. Passar bra att göra tisdag eftermiddag eller onsdag – innan torsdag när ni bygger webbservern.
 

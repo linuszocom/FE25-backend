@@ -1,6 +1,6 @@
 # Node.js – Övning
 
-Övningen bygger på lektionen **Tisdag 3 – Intro till Backend & Node.js**. Du sätter upp ett projekt med ESM, använder **fs** för att läsa och skriva filer, och **readline-sync** för användarindata. Passar bra att göra tisdag eftermiddag och på onsdag – innan torsdag när ni bygger webbservern.
+Övningen bygger på lektionen **Tisdag 3 – Intro till Backend & Node.js**. Du sätter upp ett projekt med ESM, använder **fs** för att läsa och skriva filer, och **readline-sync** för användarindata. Passar bra att göra tisdag eftermiddag eller onsdag – innan torsdag när ni bygger webbservern.
 
 **Översikt:** Projekt → fs (fil) → readline-sync (indata) → moduler + HTML (valfritt) → testa → fler idéer (valfritt).
 
@@ -76,3 +76,5 @@ _Valfritt:_ Kör `node -v` och `npm -v` för att kontrollera att miljön fungera
 - **Fler frågor** – Använd `readlineSync.question` flera gånger (t.ex. namn och meddelande) och bygg en text eller HTML av svaren.
 - **Annat filnamn** – Spara till t.ex. `anteckning.txt`, eller låt användaren ange filnamn (kräver lite egen research om säkerhet).
 - **CommonJS i en annan mapp** – Skapa en mapp utan `"type": "module"` och gör samma modul-övning med `require` och `module.exports`, jämför med ESM-versionen.
+
+---

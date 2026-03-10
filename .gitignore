@@ -30,3 +30,4 @@ Thumbs.db
 # Build output (om du börjar använda TypeScript/Build-steg senare)
 dist/
 build/
+tisdag-10-rest-api/api-docs.md
